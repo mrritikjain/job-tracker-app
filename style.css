@@ -1,67 +1,27 @@
-* {
-  padding: 0px;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Rethink Sans", sans-serif;
-  height: 100vh;
-  color: #fff;
-  background: linear-gradient(
-    0deg,
-    rgba(41, 148, 206, 1) 68%,
-    rgba(45, 125, 253, 1) 100%
-  );
-
-  padding: 10px 20px;
-}
-header {
+.top-sec {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
 }
-header h2 {
-  font-size: 30px;
-}
-header button {
-  background-color: transparent;
-  border: 1px solid #fff;
-  color: #fff;
-  padding: 10px 40px;
-  border-radius: 10px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: 300ms;
-  transform: scale(1);
-}
-header button:hover {
-  background-color: #fff;
-  color: #000;
-  transform: scale(1.1);
-}
-.top-sec{
-  display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-}
-.top-sec h2{
+.top-sec h2 {
   font-size: 50px;
   text-align: center;
   line-height: 55px;
 }
-p{
+p {
   font-size: 18px;
   text-align: center;
   margin: 20px 0px;
 }
-.top-sec button{
-padding: 10px 40px;
-background-color: rgb(43, 194, 43);
-border: none;
-color: #fff;
-border-radius: 10px;
-font-weight: 500;
-cursor: pointer;
+.top-sec a {
+  padding: 10px 40px;
+  background-color: rgb(43, 194, 43);
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
 }

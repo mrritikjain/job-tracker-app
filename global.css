@@ -1,0 +1,41 @@
+* {
+  padding: 0px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Rethink Sans", sans-serif;
+  height: 100vh;
+  color: #fff;
+  background: linear-gradient(
+    0deg,
+    rgba(41, 148, 206, 1) 68%,
+    rgba(45, 125, 253, 1) 100%
+  );
+  padding: 10px 20px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+}
+header h2 {
+  font-size: 30px;
+}
+header a {
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 10px 40px;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 300ms;
+  transform: scale(1);
+  text-decoration: none;
+}
+header a:hover {
+  background-color: #fff;
+  color: #000;
+  transform: scale(1.1);
+}
