@@ -1,0 +1,13 @@
+.profile {
+  display: flex;
+  align-items: center;
+}
+.profile img {
+  border: 2px solid #9a9a9a;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+}
+.profile h2 {
+  font-size: 22px;
+}

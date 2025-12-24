@@ -13,20 +13,26 @@ register.addEventListener("click", () => {
 
   let users = JSON.parse(localStorage.getItem("users")) || [];
 
-  const userexist = users.find(user => user.email === regemail);
+  const userexist = users.find((user) => user.regemail === regemail);
 
   if (userexist) {
     alert("User already registered");
     return;
   }
+  const reader = new FileReader();
+  reader.readAsDataURL(userimage.files[0]);
 
-  users.push({
-    name: username,
-    email: regemail
-  });
-
-  localStorage.setItem("users", JSON.stringify(users));
-  alert("Registration successful");
+  reader.onload = function () {
+    const userData = {
+      username,
+      regemail,
+      image: reader.result,
+    };
+    users.push(userData);
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("currentUser", regemail);
+    window.location.href = "dashboard.html";
+  };
 });
 
 login.addEventListener("click", () => {
@@ -39,11 +45,12 @@ login.addEventListener("click", () => {
 
   let users = JSON.parse(localStorage.getItem("users")) || [];
 
-  const userexist = users.find(user => user.email === logemail);
+  const userexist = users.find((user) => user.regemail === logemail);
 
   if (!userexist) {
     alert("You are not registered. Please register first.");
   } else {
-    alert(`Welcome ${userexist.name}`);
+    localStorage.setItem("currentUser", logemail);
+    window.location.href = "dashboard.html";
   }
 });
