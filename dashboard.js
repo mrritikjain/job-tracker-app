@@ -7,7 +7,7 @@ let Role = document.getElementById("role");
 let compLogo = document.getElementById("company-logo");
 let jobLocation = document.getElementById("job-location");
 let formSubmit = document.getElementById("form-submit");
-let card = document.querySelector(".card");
+let cards = document.querySelector(".job-cards");
 if (!currentUserEmail) {
   window.location.href = "usersign.html";
 }
@@ -26,14 +26,19 @@ close.addEventListener("click", () => {
 });
 
 formSubmit.addEventListener("click", () => {
-  console.log("clicked");
-  if (!compName.value || !Role.value || !jobLocation.value) {
+  if (!compName.value || !Role.value || !jobLocation.value || compLogo.files.lenght ===0) {
     alert("Please Fill all values.");
+    return;
   }
-  card.innerHTML = `
+
+  const reader = new FileReader();
+  const card = document.createElement("div");
+  card.classList.add("card");
+  reader.onload = function () {
+    card.innerHTML = `
  <div class="logo">
                 <img
-                  src="assets/google.jpg"
+                  src="${reader.result}"
                   alt="Company Logo"
                   height="50px"
                   width="50px"
@@ -63,6 +68,9 @@ formSubmit.addEventListener("click", () => {
                 />
               </div>
  `;
+  };
+  reader.readAsDataURL(compLogo.files[0]);
+  cards.appendChild(card);
   document.querySelector(".listing-form").style.display = "none";
   card.style.display = "grid";
 });
