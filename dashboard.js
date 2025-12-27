@@ -1,82 +1,148 @@
-let users = JSON.parse(localStorage.getItem("users") || []);
-let currentUserEmail = localStorage.getItem("currentUser");
-let addJob = document.getElementById("addjob");
-let close = document.getElementById("close");
-let compName = document.getElementById("company-name");
-let Role = document.getElementById("role");
-let compLogo = document.getElementById("company-logo");
-let jobLocation = document.getElementById("job-location");
-let formSubmit = document.getElementById("form-submit");
-let cards = document.querySelector(".job-cards");
+// ================= USERS =================
+const users = JSON.parse(localStorage.getItem("users")) || [];
+const currentUserEmail = localStorage.getItem("currentUser");
+
 if (!currentUserEmail) {
   window.location.href = "usersign.html";
 }
-const user = users.find((u) => u.regemail === currentUserEmail);
 
-document.getElementById("welcome").innerText =
-  "Welcome, " + user.username + "!";
+const user = users.find((u) => u.regemail === currentUserEmail);
+document.getElementById("welcome").innerText = `Welcome, ${user.username}!`;
 document.getElementById("profileImg").src = user.image;
 
-addJob.addEventListener("click", () => {
-  document.querySelector(".listing-form").style.display = "flex";
-});
+// ================= ELEMENTS =================
+const addJob = document.getElementById("addjob");
+const closeBtn = document.getElementById("close");
+const form = document.querySelector(".listing-form");
 
-close.addEventListener("click", () => {
-  document.querySelector(".listing-form").style.display = "none";
-});
+const compName = document.getElementById("company-name");
+const roleInput = document.getElementById("role");
+const jobLocation = document.getElementById("job-location");
+const compLogo = document.getElementById("company-logo");
+const formSubmit = document.getElementById("form-submit");
 
+const cardsContainer = document.querySelector(".job-cards");
+const searchInput = document.getElementById("search-job");
+const appliedbtn = document.getElementById("applied-btn");
+const jobselection = document.getElementById("job-selection");
+let debounceTimer;
+
+// ================= JOB STORAGE =================
+let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+
+// ================= FORM TOGGLE =================
+addJob.onclick = () => (form.style.display = "flex");
+closeBtn.onclick = () => (form.style.display = "none");
+
+// ================= CREATE CARD =================
+function createCard(job) {
+  const card = document.createElement("div");
+  card.className = "card";
+
+  card.innerHTML = `
+    <div class="logo">
+      <img src="${job.logo}" height="50" width="50" />
+    </div>
+    <div class="job-details">
+      <h2>${job.company}</h2>
+      <h3>Role: <span>${job.role}</span></h3>
+      <h5>Location: <span>${job.location}</span></h5>
+    </div>
+    <div class="status-btn">
+      <button class="applied-btn">Applied</button>
+    </div>
+    <div class="update-bar">
+      <select id="job-selection">
+        <option>Applied</option>
+        <option>Interview</option>
+        <option>Rejected</option>
+      </select>
+      <img src="assets/delete.png" class="delete-card" height="20" />
+    </div>
+  `;
+
+  cardsContainer.appendChild(card);
+}
+
+// ================= LOAD JOBS ON PAGE LOAD =================
+function renderJobs() {
+  cardsContainer.innerHTML = "";
+
+  jobs
+    .filter((job) => job.email === currentUserEmail)
+    .forEach((job) => createCard(job));
+}
+
+renderJobs();
+
+// ================= ADD JOB =================
 formSubmit.addEventListener("click", () => {
-  if (!compName.value || !Role.value || !jobLocation.value || compLogo.files.lenght ===0) {
-    alert("Please Fill all values.");
+  if (
+    !compName.value.trim() ||
+    !roleInput.value.trim() ||
+    !jobLocation.value.trim() ||
+    compLogo.files.length === 0
+  ) {
+    alert("Please fill all fields");
     return;
   }
 
   const reader = new FileReader();
-  const card = document.createElement("div");
-  card.classList.add("card");
-  reader.onload = function () {
-    card.innerHTML = `
- <div class="logo">
-                <img
-                  src="${reader.result}"
-                  alt="Company Logo"
-                  height="50px"
-                  width="50px"
-                />
-              </div>
-              <div class="job-details">
-                <h2>${compName.value}</h2>
-                <h3>Role : <span id="role">${Role.value}</span></h3>
-                <h5>Location: <span id="location">${jobLocation.value}</span></h5>
-              </div>
-              <div class="status-btn">
-                <span id="card-btn" class="applied-btn">Applied</span>
-              </div>
-              <div class="update-bar">
-                <select name="status" id="job-status">
-                  <option value="applied">Applied</option>
-                  <option value="interview">Interview</option>
-                  <option value="rejected">Rejected</option>
-                </select>
 
-                <img
-                  src="assets/delete.png"
-                  alt="delete icon"
-                  height="20px"
-                  width="20px"
-                  id="delete-card"
-                />
-              </div>
- `;
+  reader.onload = () => {
+    const newJob = {
+      email: currentUserEmail,
+      company: compName.value.trim(),
+      role: roleInput.value.trim(),
+      location: jobLocation.value.trim(),
+      logo: reader.result,
+    };
+
+    jobs.push(newJob);
+    localStorage.setItem("jobs", JSON.stringify(jobs));
+
+    createCard(newJob);
+    form.style.display = "none";
+
+    // reset form
+    compName.value = "";
+    roleInput.value = "";
+    jobLocation.value = "";
+    compLogo.value = "";
   };
+
   reader.readAsDataURL(compLogo.files[0]);
-  cards.appendChild(card);
-  document.querySelector(".listing-form").style.display = "none";
-  card.style.display = "grid";
 });
 
-document.querySelector(".main").addEventListener("click", (e) => {
-  if (e.target.id === "delete-card") {
-    e.target.closest(".card").remove();
+// ================= DELETE JOB =================
+cardsContainer.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-card")) {
+    const card = e.target.closest(".card");
+    const companyName = card.querySelector("h2").innerText;
+
+    jobs = jobs.filter(
+      (job) => !(job.company === companyName && job.email === currentUserEmail)
+    );
+
+    localStorage.setItem("jobs", JSON.stringify(jobs));
+    card.remove();
   }
 });
+
+// ================= SEARCH WITH DEBOUNCE =================
+searchInput.addEventListener("input", () => {
+  clearTimeout(debounceTimer);
+
+  debounceTimer = setTimeout(() => {
+    const value = searchInput.value.toLowerCase();
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach((card) => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(value) ? "grid" : "none";
+    });
+  }, 300);
+});
+
+// ================= Filter Buttons =================
+
