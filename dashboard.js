@@ -145,4 +145,3 @@ searchInput.addEventListener("input", () => {
 });
 
 // ================= Filter Buttons =================
-
