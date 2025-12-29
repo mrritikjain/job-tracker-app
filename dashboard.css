@@ -102,6 +102,7 @@ button:hover {
   grid-area: logo;
   grid-template: 1fr;
 }
+
 .job-details {
   grid-area: job-details;
 }
