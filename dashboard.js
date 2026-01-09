@@ -27,7 +27,7 @@ const compLogo = document.getElementById("company-logo");
 const formSubmit = document.getElementById("form-submit");
 
 const cardsContainer = document.querySelector(".job-cards");
-const searchInput = document.getElementById("search-job");
+const searchInput = doccument.getElementById("search-job");
 
 // Filter Buttons
 const allBtn = document.getElementById("all-btn");
