@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Tracker - Interview Prep</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --bg: #f8fafc;
+        --card-bg: #ffffff;
+        --text-main: #1e293b;
+        --text-sub: #475569;
+        --accent: #8b5cf6;
+        --code-bg: #1e1e1e;
+        --code-text: #e2e8f0;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg);
+        color: var(--text-main);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      header {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-bottom: 30px;
+        border-bottom: 2px solid #e2e8f0;
+      }
+      h1 {
+        font-size: 3.5rem;
+        color: var(--primary);
+        margin-bottom: 10px;
+        letter-spacing: -1px;
+      }
+      .subtitle {
+        font-size: 1.25rem;
+        color: var(--text-sub);
+        font-weight: 500;
+      }
+      section {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        font-size: 1.8rem;
+        color: var(--text-main);
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 1px solid #f1f5f9;
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+      }
+      h2 i {
+        color: var(--accent);
+      }
+      h3 {
+        font-size: 1.3rem;
+        color: var(--primary-dark);
+        margin-top: 25px;
+      }
+      h4 {
+        font-size: 1.1rem;
+        color: var(--text-main);
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      p {
+        margin-bottom: 15px;
+        color: var(--text-sub);
+      }
+      ul {
+        padding-left: 20px;
+        margin-bottom: 20px;
+      }
+      li {
+        margin-bottom: 10px;
+        color: var(--text-sub);
+      }
+      strong {
+        color: var(--text-main);
+        font-weight: 600;
+      }
+      .elevator-pitch {
+        background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+        border-left: 5px solid var(--primary);
+        padding: 20px;
+        font-style: italic;
+        border-radius: 4px;
+        color: var(--primary-dark);
+        font-weight: 500;
+      }
+      code {
+        font-family: "Consolas", "Monaco", monospace;
+        background: #f1f5f9;
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: #d946ef;
+        font-size: 0.9em;
+      }
+      pre {
+        background: var(--code-bg);
+        color: var(--code-text);
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-family: "Consolas", monospace;
+        font-size: 0.9rem;
+        border: 1px solid #334155;
+      }
+      pre code {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+      }
+      .badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-right: 8px;
+      }
+      .badge-js {
+        background: #fef08a;
+        color: #854d0e;
+      }
+      .badge-css {
+        background: #bfdbfe;
+        color: #1e40af;
+      }
+      .badge-html {
+        background: #ffedd5;
+        color: #9a3412;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1><i class="fa-solid fa-briefcase"></i> Job Tracker</h1>
+        <div class="subtitle">Interview Preparation Guide</div>
+      </header>
+      <section>
+        <h2>
+          <i class="fa-solid fa-star"></i> 1. Project Overview & Elevator Pitch
+        </h2>
+        <h4>The Problem</h4>
+        <p>
+          Job hunting is chaotic. Applicants often lose track of which companies
+          they've applied to, their statuses, and follow-up dates.
+        </p>
+        <h4>The Solution</h4>
+        <p>
+          A centralized dashboard to register, log applications, track status
+          (Applied, Interview, Rejected), and visualize progress.
+        </p>
+        <h3>
+          <i class="fa-solid fa-quote-left"></i> Quick Summary for Interviewers
+        </h3>
+        <div class="elevator-pitch">
+          "I built a vanilla JavaScript Single Page Application-style (SPA)
+          project that serves as a personal CRM for job seekers. It features a
+          custom authentication system, a dynamic dashboard with CRUD
+          capabilities, and real-time filtering. I built it without frameworks
+          to demonstrate my solid grasp of DOM manipulation and LocalStorage."
+        </div>
+      </section>
+      <section>
+        <h2><i class="fa-solid fa-layer-group"></i> 2. Tech Stack</h2>
+        <ul>
+          <li>
+            <span class="badge badge-html">HTML5</span> Semantic Structure
+          </li>
+          <li>
+            <span class="badge badge-css">CSS3</span> Custom Properties,
+            Flexbox/Grid
+          </li>
+          <li>
+            <span class="badge badge-js">JavaScript</span> ES6+, LocalStorage,
+            FileReader API
+          </li>
+        </ul>
+        <h3>Why Vanilla JS?</h3>
+        <p>
+          To master the core mechanics of the web—DOM manipulation, event
+          bubbling, and state management—before abstracting them with libraries
+          like React.
+        </p>
+        <h3>Why LocalStorage?</h3>
+        <p>
+          It provides a lightweight, client-side persistence solution, keeping
+          user data active across sessions efficiently for a solo project.
+        </p>
+      </section>
+      <section>
+        <h2><i class="fa-solid fa-code"></i> 3. Implementation Deep Dive</h2>
+        <h3>A. Authentication (`usersign.js`)</h3>
+        <p>
+          <strong>Session Token:</strong>
+          <code>localStorage.setItem("currentUser", email)</code> acts as the
+          active session.
+        </p>
+        <p>
+          <strong>Duplication Check:</strong> Uses
+          <code>Array.prototype.find()</code> to prevent re-registering emails.
+        </p>
+        <h3>B. The Dashboard (`dashboard.js`)</h3>
+        <h4>1. Authorization Gatekeeping</h4>
+        <pre><code>const currentUserEmail = localStorage.getItem("currentUser");
+if (!currentUserEmail) { 
+    window.location.href = "usersign.html"; 
+}</code></pre>
+        <p>Immediately protects the route if no user is logged in.</p>
+        <h4>2. Image Handling (FileReader)</h4>
+        <p>
+          Using <code>readAsDataURL</code> to convert images to Base64 strings
+          for storage in JSON.
+        </p>
+        <h4>3. Search Optimization (Debounce)</h4>
+        <pre><code>let debounceTimer;
+searchInput.addEventListener("input", () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(searchLogic, 300);
+});</code></pre>
+        <p>
+          Prevents the search function from firing on every keystroke, improving
+          performance.
+        </p>
+      </section>
+      <section>
+        <h2><i class="fa-solid fa-trophy"></i> 4. Notable Challenges Solved</h2>
+        <h4>Multi-User Logic</h4>
+        <p>
+          <strong>Challenge:</strong> Data leaking between users.<br />
+          <strong>Solution:</strong> Strict filtering:
+          <code>jobs.filter(j => j.email === currentUserEmail)</code> ensures
+          users only see their own data.
+        </p>
+        <h4>State Sync</h4>
+        <p>
+          <strong>Challenge:</strong> Updating UI counts immediately after
+          status changes.<br />
+          <strong>Solution:</strong> Helper functions
+          <code>saveJobs()</code> and <code>updateCounts()</code> are called
+          synchronously after every state mutation.
+        </p>
+      </section>
+      <section>
+        <h2><i class="fa-solid fa-comments"></i> 5. Common Questions</h2>
+        <ul>
+          <li>
+            <strong>LocalStorage vs Cookies?</strong><br />
+            LocalStorage is persistent and has more capacity (5MB+). Cookies are
+            sent with every server request and are much smaller (4KB).
+          </li>
+          <li>
+            <strong>Event Loop?</strong><br />
+            Explain how <code>setTimeout</code> pushes the callback to the Task
+            Queue, waiting for the Call Stack to clear.
+          </li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>
